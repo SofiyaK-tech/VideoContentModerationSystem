@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Stream Options</title>
+</head>
+<body>
+    <h1>🎥 Moderated Camera Feed</h1>
+    <form action="{% url 'moderated_camera_stream' %}" method="get" target="_blank">
+        <label>Camera Source:</label>
+        <input name="url" placeholder="0 or IP camera URL">
+        <button type="submit">Start Moderated Stream</button>
+    </form>
+</body>
+</html>

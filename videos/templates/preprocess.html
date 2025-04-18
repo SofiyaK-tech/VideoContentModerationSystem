@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Preprocessing Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #343a40;
+        }
+
+        h1, h3 {
+            font-weight: 600;
+        }
+
+        .card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .card img {
+            border-radius: 1rem 1rem 0 0;
+            object-fit: cover;
+            height: 200px;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 0.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 10px 20px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-2px);
+        }
+
+        .row {
+            gap: 1rem;
+        }
+
+        @media (max-width: 576px) {
+            .card img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="text-center mb-5">Preprocessing Results</h1>
+
+        <h3 class="mb-4">Extracted Frames</h3>
+        <div class="row">
+            {% for frame in frames %}
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}{{ frame }}" class="card-img-top" alt="Frame">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <h3 class="mt-5 mb-3">Extracted Audio</h3>
+        <audio controls>
+            <source src="{{ MEDIA_URL }}{{ audio }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <div class="text-center mt-5">
+            <a href="{% url 'videolist' %}" class="btn btn-primary">Uploaded Videos</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

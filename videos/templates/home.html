@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Content Moderation System</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS (Animate on Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .hero {
+      background-image: url('https://img.freepik.com/free-photo/online-school-equipment-home_23-2149041145.jpg?t=st=1743933463~exp=1743937063~hmac=e58be729faff70d809dcc4d325cb143d7a72e6833da5b836d577fdf836cee4d2&w=1380');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full bg-blue-700 shadow-md z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-white">ModSys</h1>
+      <ul class="flex space-x-6 text-white font-medium">
+        <li><a href="#home" class="hover:text-gray-300">Home</a></li>
+        <li><a href="#about" class="hover:text-gray-300">About</a></li>
+        <li><a href="{% url 'upload' %}" class="hover:text-gray-300">Upload</a></li>
+        <li><a href="#frames" class="hover:text-gray-300">Frames</a></li>
+        <li><a href="{% url 'live_stream_list' %}" class="hover:text-gray-300">Live Stream</a></li>
+        <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero flex items-center justify-center text-center text-white relative pt-32">
+    <div class="bg-black bg-opacity-50 p-10 rounded-lg" data-aos="zoom-in">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Video Content Moderation System</h1>
+      <p class="text-lg mb-6">Upload, analyze, and extract meaningful content from videos easily.</p>
+      <a href="{% url 'upload' %}" class="bg-white text-black px-6 py-3 rounded hover:bg-gray-200 font-semibold transition">Upload Video</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-white" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-6">About Us</h2>
+      <p class="text-gray-700 text-lg text-center">
+        We are a team of developers, AI researchers, and tech enthusiasts passionate about making digital content safer and smarter. Our goal is to build intelligent systems that can analyze, moderate, and process multimedia content with accuracy and efficiency.
+        VideoMod is our initiative to tackle the rising challenge of video content moderation in an age of explosive digital growth. Whether it's for social media platforms, educational portals, or streaming services, we aim to provide seamless tools that automate and enhance video content evaluation.
+        We believe in responsible AI that empowers users while protecting communities.
+      </p>
+    </div>
+  </section>
+
+  <!-- Upload Section -->
+  <section id="upload" class="py-16 bg-gray-100" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-6">Upload a Video</h2>
+
+      <input type="file" id="videoInput" accept="video/*" class="block mx-auto mb-4" onchange="previewVideo(event)">
+
+      <video id="videoPreview" controls class="mx-auto hidden rounded shadow-lg mb-6" style="width: 640px; height: 360px;"></video>
+
+      <section id="frames" class="py-16 bg-white" data-aos="fade-up">
+        <div class="max-w-6xl mx-auto px-8 text-center">
+          <h2 class="text-3xl font-bold mb-6">Extracted Frames</h2>
+          <p class="text-gray-600">These are sample frames from the uploaded video. Integrate with backend to extract real frames.</p>
+        </div>
+      </section>
+      <!-- Frame Preview -->
+      <div id="framePreview" class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6" data-aos="fade-up">
+        <img src="https://picsum.photos/400/250?random=1" alt="Frame 1" class="rounded shadow" />
+        <img src="https://picsum.photos/400/250?random=2" alt="Frame 2" class="rounded shadow" />
+        <img src="https://picsum.photos/400/250?random=3" alt="Frame 3" class="rounded shadow" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Frames Section -->
+  
+
+  <!-- Live Stream Section -->
+  <section id="live" class="py-16 bg-gray-100" data-aos="fade-left">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-6">Live Stream Moderation</h2>
+      <p class="text-gray-600 mb-4">Coming soon: Moderate live video content in real time.</p>
+      <button class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition">Start Live Stream</button>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-white" data-aos="fade-up">
+    <div class="max-w-2xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
+      <form class="space-y-4">
+        <input type="text" placeholder="Your Name" class="w-full border border-gray-300 p-3 rounded" required />
+        <input type="email" placeholder="Your Email" class="w-full border border-gray-300 p-3 rounded" required />
+        <textarea placeholder="Your Message" rows="4" class="w-full border border-gray-300 p-3 rounded" required></textarea>
+        <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white py-6 text-center text-gray-500">
+    © 2025 Video Moderation System. All rights reserved.
+  </footer>
+
+  <!-- JS -->
+  <script>
+    AOS.init();
+
+    function previewVideo(event) {
+      const file = event.target.files[0];
+      const video = document.getElementById('videoPreview');
+      if (file) {
+        video.src = URL.createObjectURL(file);
+        video.classList.remove('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

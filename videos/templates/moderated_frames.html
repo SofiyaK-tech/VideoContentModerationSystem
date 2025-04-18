@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moderated Frames</title>
+    <style>
+        img {
+            width: 200px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Moderated Frames for Video {{ video_id }}</h1>
+
+    {% if frames %}
+        <div style="display: flex; flex-wrap: wrap;">
+            {% for frame in frames %}
+                <img src="{{ frame }}" alt="Frame {{ forloop.counter }}">
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No frames found.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transcribed & Censored Audio</title>
+</head>
+<body>
+    <h2>Transcribed Text (Censored)</h2>
+    <pre>
+        {% if transcript %}
+            {% with transcript_file=transcript|default:'' %}
+                {% for line in transcript_file|linebreaksbr %}
+                    {{ line }}
+                {% endfor %}
+            {% endwith %}
+        {% else %}
+            <p>No transcript available.</p>
+        {% endif %}
+    </pre>
+
+    <h3>Censored Audio</h3>
+    {% if audio %}
+        <audio controls>
+            <source src="{{ audio }}" type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    {% else %}
+        <p>No audio available.</p>
+    {% endif %}
+
+    <form action="{% url 'transcribe_audio' video_id=video.id %}" method="get">
+        <button type="submit">Transcribe & Censor Audio</button>
+    </form>
+</body>
+</html>
